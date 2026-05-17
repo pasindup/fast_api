@@ -1,7 +1,10 @@
 from fastapi import FastAPI, HTTPException
 
 from db import init_db
-from operation import get_annual_data, fetch_and_store_data
+from operation import (
+    get_annual_data,
+    fetch_and_store_data,
+    calculate_annual_metrics)
 
 app = FastAPI()
 
@@ -9,7 +12,7 @@ init_db()
 
 
 @app.get("/symbols/{symbol}/annual/{year}")
-def get_symbol_annual(symbol: str, year: str) -> None:
+def get_symbol_annual(symbol: str, year: str) -> dict:
     rows = get_annual_data(symbol, year)
     print("rows type :- ", type(rows))
     print("rows items :- ", rows)
@@ -27,4 +30,6 @@ def get_symbol_annual(symbol: str, year: str) -> None:
             detail="No data found"
         )
 
-    return None
+    result = calculate_annual_metrics(rows)
+
+    return result

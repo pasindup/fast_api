@@ -1,7 +1,7 @@
 import requests
 from db import get_connection
 
-API_KEY = ""
+API_KEY = "AU5683G8JJIHEBJH" #personal key.
 BASE_URL = "https://www.alphavantage.co/query"
 
 
@@ -58,3 +58,16 @@ def get_annual_data(symbol: str, year: str) -> list:
     conn.close()
 
     return rows
+
+
+def calculate_annual_metrics(rows) -> dict:
+    print("rows: ", rows)
+    highs = [row["high"] for row in rows]
+    lows = [row["low"] for row in rows]
+    volumes = [row["volume"] for row in rows]
+
+    return {
+        "high": str(max(highs)),
+        "low": str(min(lows)),
+        "volume": str(sum(volumes))
+    }
