@@ -41,6 +41,7 @@ The API follows a **cache-first strategy**:
 market_api/
 │
 ├── .gitignore
+├── .env
 ├── app.py
 ├── operations.py
 ├── requirements.txt
@@ -84,8 +85,21 @@ pip install -r requirements.txt
 ```
 
 ---
-
 ## Environment Configuration
+
+Create a `.env` file:
+
+```env
+API_KEY=YOUR_API_KEY
+```
+
+Example:
+
+```env
+API_KEY=abc123456
+```
+---
+
 
 Get API key from:
 
