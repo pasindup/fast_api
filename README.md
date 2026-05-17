@@ -185,4 +185,4 @@ GET /symbols/IBM/annual/2005
 
 ## Author
 
-Perera N .P .J
+Perera N P J
