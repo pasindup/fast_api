@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 
 from db import init_db
-from operation import get_annual_data
+from operation import get_annual_data, fetch_and_store_data
 
 app = FastAPI()
 
@@ -16,6 +16,7 @@ def get_symbol_annual(symbol: str, year: str) -> None:
 
     if not rows:
         # to-do fetch
+        fetch_and_store_data(symbol)
 
         # Retry after caching
         rows = get_annual_data(symbol, year)
